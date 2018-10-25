@@ -1,0 +1,443 @@
+{
+  "battle_tag": "Glade-21297",
+  "region": "eu",
+  "gamesplayed": 1,
+  "win_streak": 1,
+  "lose_streak": 0,
+  "longest_win_streak": 0,
+  "longest_lose_streak": 0,
+  "maps": [
+    {
+      "name": "Temple of Anubis",
+      "win": [
+        1
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        1
+      ],
+      "win_streak": [
+        1
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Hanamura",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Horizon Lunar Colony",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Volskaya Industries",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Watchpoint: Gibraltar",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Dorado",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Junkertown",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Route 66",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Lijiang Tower",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Ilios",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Nepal",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Oasis",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Blizzard World",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Eichenwalde",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "King's row",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Numbani",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Hollywood",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    },
+    {
+      "name": "Busan",
+      "win": [
+        0
+      ],
+      "loses": [
+        0
+      ],
+      "total": [
+        0
+      ],
+      "win_streak": [
+        0
+      ],
+      "lose_streak": [
+        0
+      ],
+      "longest_win_streak": [
+        0
+      ],
+      "longest_lose_streak": [
+        0
+      ]
+    }
+  ]
+}
