@@ -532,6 +532,7 @@ function apiCall(username, region) {
     if (err) {
       return console.log(err);
     }
+    console.log(owJson);
     return owJson;
   });
 }
@@ -553,6 +554,7 @@ function setBattleTag(arguments, receivedMessage) {
 
 function setRegion(arguments, receivedMessage) {
   if (arguments[0] == "eu" || arguments[0] == "na" || arguments[0] == "asia") {
+    const overwatch = getUserFile(receivedMessage);
     overwatch.region = arguments[0];
     writeToFile(receivedMessage);
     receivedMessage.channel.send("You successfully set your Region to: " + "`" + arguments[0] + "`");
