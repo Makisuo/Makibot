@@ -369,7 +369,7 @@ function addGameOw(arguments, receivedMessage, primaryCommand) {
         owAlert(arguments, receivedMessage, primaryCommand, 17)
         break;
       default:
-        receivedMessage.channel.send(arguments[0] + " ist keine Overwatch Map! Versuch es mit " + overwatch.maps[3].name);
+        receivedMessage.channel.send(arguments[0] + " is not an Overwatch map! Try " + overwatch.maps[3].name + "instead");
         break;
     }
   }
