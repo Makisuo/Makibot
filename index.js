@@ -498,7 +498,7 @@ function showStats(arguments, receivedMessage, mapID) {
   });
 }
 
-function stats(arguments, receivedMessage) {
+async function stats(arguments, receivedMessage) {
   const overwatch = getUserFile(receivedMessage);
 
   if (overwatch.battle_tag == "") {
@@ -510,7 +510,8 @@ function stats(arguments, receivedMessage) {
     receivedMessage.channel.send("Pls set your Region first with `!region eu`");
     return;
   }
-  createNewFile(receivedMessage, apiCall(overwatch.battle_tag, overwatch.region), "./ingameStatsPlayers/");
+  const owJson = await apiCall(overwatch.battle_tag, overwatch.region, receivedMessage);
+  receivedMessage.channel.send("Deine Stats nibba")
 }
 
 
@@ -523,7 +524,7 @@ function winStreakCalc(receivedMessage) {
   }
 }
 
-function apiCall(username, region) {
+function apiCall(username, region, receivedMessage) {
   const request = require('request');
 
   request("https://ow-api.com/v1/stats/pc/" + region + "/" + username + "/profile", {
@@ -533,6 +534,8 @@ function apiCall(username, region) {
       return console.log(err);
     }
     console.log(owJson);
+    createNewFile(receivedMessage, owJson, "./ingameStatsPlayers/");
+    writeToFile(receivedMessage);
     return owJson;
   });
 }
