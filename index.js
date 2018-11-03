@@ -181,7 +181,7 @@ function addGameOw(arguments, receivedMessage, primaryCommand) {
 
 
   if (primaryCommand === "win") {
-    switch (arguments[0]) {
+    switch (arguments[0].toLowerCase()) {
       case "anubis":
         owADD(0, receivedMessage, true)
         writeToFile(receivedMessage)
@@ -381,7 +381,6 @@ function owAlert(arguments, receivedMessage, primaryCommand, mapID) {
 
   let winrate = ((overwatch.maps[mapID].win[0]) / (overwatch.maps[mapID].total[0])) * 100;
 
-  receivedMessage.channel.send();
   receivedMessage.channel.send({
     embed: {
       color: 11695294,
@@ -468,7 +467,8 @@ function getUserFile(receivedMessage) {
   }
 }
 
-function showStats(arguments, receivedMessage, mapID) {
+function callMeWhenDOne(receivedMessage) {
+  console.log()
   const embed = new Discord.RichEmbed()
     .setTitle("Map: " + arguments[1])
     .setAuthor(client.user.username, receivedMessage.author.avatarURL)
@@ -498,12 +498,18 @@ function showStats(arguments, receivedMessage, mapID) {
   });
 }
 
-async function stats(arguments, receivedMessage) {
+async function stats(arguments, receivedMessage, callback) {
   const overwatch = getUserFile(receivedMessage);
 
   if (overwatch.battle_tag == "") {
-    receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345`");
-    return;
+    if(overwatch.region == ""){
+      receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345` \n And your Region with `!region eu");
+      return;
+    }
+    else{
+      receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345`");
+      return;
+    }
   }
 
   if (overwatch.region == "") {
@@ -512,8 +518,9 @@ async function stats(arguments, receivedMessage) {
   }
   const owJson = await apiCall(overwatch.battle_tag, overwatch.region, receivedMessage);
   receivedMessage.channel.send("Deine Stats nibba")
-}
+  callMeWhenDone(receivedMessage);
 
+}
 
 function winStreakCalc(receivedMessage) {
   const overwatch = getUserFile(receivedMessage);
