@@ -474,7 +474,7 @@ function callMeWhenDone(receivedMessage, owJson) {
     .setTitle("**" + owJson.name + "** (" + "Level: "+(owJson.level+owJson.prestige*100) +")")
     .setAuthor(client.user.username, receivedMessage.author.avatarURL)
     .setColor(0x00AE86)
-    .setDescription("Requested by " + receivedMessage.author.toString())
+    .setDescription("Endorsement Level :" +owJson.endorsement + "\n Requested by " + receivedMessage.author.toString())
     .setFooter("Copyright 2018 lel © Makisuo", client.user.avatarURL)
     .setImage(owJson.ratingIcon)
     .setThumbnail(owJson.icon)
@@ -501,11 +501,11 @@ function callMeWhenDone(receivedMessage, owJson) {
       "\n     Loses:" + (owJson.quickPlayStats.games.played - owJson.quickPlayStats.games.won) +
       "```" +
       "```Medals("+ owJson.quickPlayStats.awards.medals +"):" +
-      "\n  Total:" +  owJson.quickPlayStats.awards.medals + "(" + ((owJson.quickPlayStats.awards.medalsGold /  owJson.quickPlayStats.awards.medals).toFixed(2) * 100) + "% Gold)" +
-      "\n    Gold:" + owJson.quickPlayStats.awards.medalsGold +
-      "\n    Silver:" + owJson.quickPlayStats.awards.medalsSilver +
-      "\n    Bronze:" + owJson.quickPlayStats.awards.medalsBronze +
-      "\n    Cards:" + owJson.quickPlayStats.awards.cards +
+      "\n  Total:" +  owJson.quickPlayStats.awards.medals +
+      "\n    Gold:  " + owJson.quickPlayStats.awards.medalsGold + "(" + ((owJson.quickPlayStats.awards.medalsGold /  owJson.quickPlayStats.awards.medals) * 100).toFixed(2) + "% Gold)" +
+      "\n    Silver:" + owJson.quickPlayStats.awards.medalsSilver + "(" + ((owJson.quickPlayStats.awards.medalsSilver /  owJson.quickPlayStats.awards.medals) * 100).toFixed(2) + "% Silver)" +
+      "\n    Bronze:" + owJson.quickPlayStats.awards.medalsBronze + "(" + ((owJson.quickPlayStats.awards.medalsBronze /  owJson.quickPlayStats.awards.medals) * 100).toFixed(2) + "% Bronze)" +
+      "\n    Cards: " + owJson.quickPlayStats.awards.cards +
       "```")
   receivedMessage.channel.send({
     embed
@@ -517,7 +517,7 @@ function stats(arguments, receivedMessage, callback) {
 
   if (overwatch.battle_tag == "") {
     if (overwatch.region == "") {
-      receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345` \n And your Region with `!region eu");
+      receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345` \n And your Region with `!region eu`");
       return;
     } else {
       receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345`");
@@ -530,7 +530,7 @@ function stats(arguments, receivedMessage, callback) {
     return;
   }
   const owJson = apiCall(overwatch.battle_tag, overwatch.region, receivedMessage);
-  receivedMessage.channel.send("Deine Stats nibba")
+  receivedMessage.channel.send("Your Stats are beeing processed <:sombra:504376524950994944>")
 }
 
 function winStreakCalc(receivedMessage) {
@@ -553,6 +553,10 @@ function apiCall(username, region, receivedMessage) {
     }
     createNewFile(receivedMessage, owJson, "./ingameStatsPlayers/");
     writeToFile(receivedMessage);
+    if(owJson.private==true){
+      receivedMessage.channel.send("Your Profile is on private :angry: :angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry::angry:")
+      return;
+    }
     callMeWhenDone(receivedMessage, owJson);
     return owJson;
   });
