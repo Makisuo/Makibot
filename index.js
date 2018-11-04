@@ -120,7 +120,7 @@ function commandHandler(receivedMessage) { //// TODO: Öffnen durch Reaktionen
   }
   if ((primaryCommand == "stats")) {
     console.log(arguments[1]);
-    stats(arguments, receivedMessage)
+    stats(arguments, receivedMessage, callMeWhenDone)
   }
   if (primaryCommand == "setBattleTag") {
     setBattleTag(arguments, receivedMessage)
@@ -467,46 +467,59 @@ function getUserFile(receivedMessage) {
   }
 }
 
-function callMeWhenDOne(receivedMessage) {
-  console.log()
+function callMeWhenDone(receivedMessage, owJson) {
+  const player = getUserFile(receivedMessage);
   const embed = new Discord.RichEmbed()
-    .setTitle("Map: " + arguments[1])
+    //Calculates The level of the Player by adding level + prestige*100
+    .setTitle("**" + owJson.name + "** (" + "Level: "+(owJson.level+owJson.prestige*100) +")")
     .setAuthor(client.user.username, receivedMessage.author.avatarURL)
     .setColor(0x00AE86)
-    .setDescription("Stats for " + receivedMessage.author.toString() + " on " + arguments[1])
-    .setFooter("This is a cool Text that has to be replaced © Makisuo", client.user.avatarURL)
-    .setImage(map_Images.default[0])
-    .setThumbnail(client.user.avatarURL)
+    .setDescription("Requested by " + receivedMessage.author.toString())
+    .setFooter("Copyright 2018 lel © Makisuo", client.user.avatarURL)
+    .setImage(owJson.ratingIcon)
+    .setThumbnail(owJson.icon)
     /*
      * Takes a Date object, defaults to current date.
      */
     .setTimestamp()
-    .addField("Wins: Loses:",
-      "amount wins and loses")
-    /*
-     * Inline fields may not display as inline if the thumbnail and/or image is too big.
-     */
-    .addField("Winrate", "Winrate& Games", true)
-    /*
-     * Blank field, useful to create some space.
-     */
-    .addBlankField(true)
-    .addField("IDK", true);
 
+    .addBlankField(true)
+
+    .addField("Competitive:",
+      "```Competitive(" + owJson.rating + "):" +
+      "\n  Total:" + owJson.competitiveStats.games.played + "(" + ((owJson.competitiveStats.games.won / owJson.competitiveStats.games.played).toFixed(2) * 100) + "%)" +
+      "\n     Wins:" + owJson.competitiveStats.games.won +
+      "\n     Loses:" + (owJson.competitiveStats.games.played - owJson.competitiveStats.games.won) +
+      "```")
+
+    .addBlankField(true)
+
+    .addField("Quickplay",
+      "```Quickplay("+ owJson.quickPlayStats.awards.medals+" Medals):" +
+      "\n  Total:" + owJson.quickPlayStats.games.played + "(" + ((owJson.quickPlayStats.games.won / owJson.quickPlayStats.games.played).toFixed(2) * 100) + "%)" +
+      "\n     Wins:" + owJson.quickPlayStats.games.won +
+      "\n     Loses:" + (owJson.quickPlayStats.games.played - owJson.quickPlayStats.games.won) +
+      "```" +
+      "```Medals("+ owJson.quickPlayStats.awards.medals +"):" +
+      "\n  Total:" +  owJson.quickPlayStats.awards.medals + "(" + ((owJson.quickPlayStats.awards.medalsGold /  owJson.quickPlayStats.awards.medals).toFixed(2) * 100) + "% Gold)" +
+      "\n    Gold:" + owJson.quickPlayStats.awards.medalsGold +
+      "\n    Silver:" + owJson.quickPlayStats.awards.medalsSilver +
+      "\n    Bronze:" + owJson.quickPlayStats.awards.medalsBronze +
+      "\n    Cards:" + owJson.quickPlayStats.awards.cards +
+      "```")
   receivedMessage.channel.send({
     embed
   });
 }
 
-async function stats(arguments, receivedMessage, callback) {
+function stats(arguments, receivedMessage, callback) {
   const overwatch = getUserFile(receivedMessage);
 
   if (overwatch.battle_tag == "") {
-    if(overwatch.region == ""){
+    if (overwatch.region == "") {
       receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345` \n And your Region with `!region eu");
       return;
-    }
-    else{
+    } else {
       receivedMessage.channel.send("Pls set your BattleTag first with `!setBattleTag username-12345`");
       return;
     }
@@ -516,10 +529,8 @@ async function stats(arguments, receivedMessage, callback) {
     receivedMessage.channel.send("Pls set your Region first with `!region eu`");
     return;
   }
-  const owJson = await apiCall(overwatch.battle_tag, overwatch.region, receivedMessage);
+  const owJson = apiCall(overwatch.battle_tag, overwatch.region, receivedMessage);
   receivedMessage.channel.send("Deine Stats nibba")
-  callMeWhenDone(receivedMessage);
-
 }
 
 function winStreakCalc(receivedMessage) {
@@ -540,9 +551,9 @@ function apiCall(username, region, receivedMessage) {
     if (err) {
       return console.log(err);
     }
-    console.log(owJson);
     createNewFile(receivedMessage, owJson, "./ingameStatsPlayers/");
     writeToFile(receivedMessage);
+    callMeWhenDone(receivedMessage, owJson);
     return owJson;
   });
 }
