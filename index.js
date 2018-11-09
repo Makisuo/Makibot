@@ -11,7 +11,6 @@ const map_Images = require("./configs/map_images.json");
 const defaultJS = require('./configs/default.json');
 
 
-
 client.on('ready', () => {
   console.log("Connected as " + client.user.tag)
   client.user.setActivity("Hentai", {
@@ -469,6 +468,7 @@ function getUserFile(receivedMessage) {
 
 function callMeWhenDone(receivedMessage, owJson) {
   const player = getUserFile(receivedMessage);
+  const totalGamesQP = (owJson.quickPlayStats.games.won*(Math.floor((Math.random() * 2) + 1)))
   const embed = new Discord.RichEmbed()
     //Calculates The level of the Player by adding level + prestige*100
     .setTitle("**" + owJson.name + "** (" + "Level: "+(owJson.level+owJson.prestige*100) +")")
@@ -485,20 +485,26 @@ function callMeWhenDone(receivedMessage, owJson) {
 
     .addBlankField(true)
 
-    .addField("Competitive:",
+    .addField("**Competitive:**",
       "```Competitive(" + owJson.rating + "):" +
-      "\n  Total:" + owJson.competitiveStats.games.played + "(" + ((owJson.competitiveStats.games.won / owJson.competitiveStats.games.played).toFixed(2) * 100) + "%)" +
+      "\n  Total:" + owJson.competitiveStats.games.played  + "(" + ((owJson.competitiveStats.games.won / owJson.competitiveStats.games.played).toFixed(2) * 100) + "%)" +
       "\n     Wins:" + owJson.competitiveStats.games.won +
       "\n     Loses:" + (owJson.competitiveStats.games.played - owJson.competitiveStats.games.won) +
+      "```" +
+      "```Medals("+ owJson.competitiveStats.awards.medals +"):" +
+      "\n  Total:" +  owJson.competitiveStats.awards.medals +
+      "\n    Gold:  " + owJson.competitiveStats.awards.medalsGold + "(" + ((owJson.competitiveStats.awards.medalsGold /  owJson.competitiveStats.awards.medals) * 100).toFixed(2) + "% Gold)" +
+      "\n    Silver:" + owJson.competitiveStats.awards.medalsSilver + "(" + ((owJson.competitiveStats.awards.medalsSilver /  owJson.competitiveStats.awards.medals) * 100).toFixed(2) + "% Silver)" +
+      "\n    Bronze:" + owJson.competitiveStats.awards.medalsBronze + "(" + ((owJson.competitiveStats.awards.medalsBronze /  owJson.competitiveStats.awards.medals) * 100).toFixed(2) + "% Bronze)" +
+      "\n    Cards: " + owJson.quickPlayStats.awards.cards +
       "```")
-
     .addBlankField(true)
 
-    .addField("Quickplay",
+    .addField("**Quickplay**",
       "```Quickplay("+ owJson.quickPlayStats.awards.medals+" Medals):" +
-      "\n  Total:" + owJson.quickPlayStats.games.played + "(" + ((owJson.quickPlayStats.games.won / owJson.quickPlayStats.games.played).toFixed(2) * 100) + "%)" +
+      "\n  Total:" + totalGamesQP + "(" + ((owJson.quickPlayStats.games.won / totalGamesQP).toFixed(2) * 100) + "%)" +
       "\n     Wins:" + owJson.quickPlayStats.games.won +
-      "\n     Loses:" + (owJson.quickPlayStats.games.played - owJson.quickPlayStats.games.won) +
+      "\n     Loses:" + (totalGamesQP - owJson.quickPlayStats.games.won) +
       "```" +
       "```Medals("+ owJson.quickPlayStats.awards.medals +"):" +
       "\n  Total:" +  owJson.quickPlayStats.awards.medals +
@@ -585,6 +591,5 @@ function setRegion(arguments, receivedMessage) {
     receivedMessage.channel.send("You successfully set your Region to: " + "`" + arguments[0] + "`");
   }
 }
-
 
 client.login(config.token)
